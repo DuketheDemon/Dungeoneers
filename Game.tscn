@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://disv4mu3db6f1"]
+
+[ext_resource type="Script" uid="uid://d03duek07rivn" path="res://GameManager.gd" id="1_wbfu4"]
+[ext_resource type="Texture2D" uid="uid://c788rsncf11vu" path="res://finallogoe.png" id="2_xkndl"]
+
+[node name="GameManager" type="Node2D" node_paths=PackedStringArray("output_label", "input_field")]
+script = ExtResource("1_wbfu4")
+output_label = NodePath("VBoxContainer/OutputLabel")
+input_field = NodePath("VBoxContainer/InputField")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 1150.0
+offset_bottom = 650.0
+size_flags_vertical = 3
+
+[node name="OutputLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InputField" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../OutputLabel")
+placeholder_text = "What do you do?"
+keep_editing_on_text_submit = true
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer"]
+position = Vector2(1066, 552)
+scale = Vector2(0.215, 0.215)
+texture = ExtResource("2_xkndl")
+
+[connection signal="text_submitted" from="VBoxContainer/InputField" to="." method="_on_input_field_text_submitted"]
